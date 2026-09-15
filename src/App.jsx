@@ -7,8 +7,8 @@ import { useState, useEffect, useRef, Fragment } from "react";
 const PORTRAIT = "/assets/portrait.jpg";
 
 /* ─────────────────────────────────────────────
-   GLOBAL STYLES
-   Dark-only — tokens defined once on .pf-root
+   GLOBAL STYLES & THEME TOKENS
+   Supports Dark and Light modes seamlessly
 ───────────────────────────────────────────── */
 const GlobalStyles = () => (
   <style>{`
@@ -16,7 +16,8 @@ const GlobalStyles = () => (
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .pf-root {
+    /* Dark Theme Tokens */
+    .pf-root.dark {
       --bg: #0A0A0A;
       --bg-2: #111111;
       --bg-deep: #000000;
@@ -33,6 +34,32 @@ const GlobalStyles = () => (
       --grad-soft: rgba(238,9,121,0.16);
       --invert-bg: #111111;
       --invert-ink: #FFFFFF;
+      --card-glass: rgba(255,255,255,0.045);
+      --card-border: rgba(255,255,255,0.10);
+      --nav-glass: rgba(10,10,10,0.85);
+    }
+
+    /* Light Theme Tokens */
+    .pf-root.light {
+      --bg: #FAFAFA;
+      --bg-2: #F4F4F5;
+      --bg-deep: #E4E4E7;
+      --surface: #FFFFFF;
+      --surface-2: #F4F4F5;
+      --ink: #09090B;
+      --ink-soft: #52525B;
+      --ink-muted: #71717A;
+      --line: #E4E4E7;
+      --line-strong: #D4D4D8;
+      --accent: #09090B;
+      --accent-soft: rgba(0,0,0,0.06);
+      --grad: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+      --grad-soft: rgba(238,9,121,0.12);
+      --invert-bg: #18181B;
+      --invert-ink: #FFFFFF;
+      --card-glass: rgba(255,255,255,0.85);
+      --card-border: rgba(0,0,0,0.08);
+      --nav-glass: rgba(250,250,250,0.85);
     }
 
     html { scroll-behavior: smooth; }
@@ -44,6 +71,7 @@ const GlobalStyles = () => (
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       min-height: 100vh;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .font-display { font-family: 'Inter Tight', sans-serif; }
@@ -75,6 +103,7 @@ const GlobalStyles = () => (
       letter-spacing: 0.06em;
       color: var(--ink-soft);
       border: 1px solid var(--line);
+      background: var(--surface);
       padding: 5px 11px;
       border-radius: 100px;
       white-space: nowrap;
@@ -110,6 +139,17 @@ const GlobalStyles = () => (
       background: none; border: none;
     }
     .nav-link:hover { color: var(--ink); }
+
+    .theme-toggle-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--line); background: var(--surface);
+      color: var(--ink); cursor: pointer; font-size: 15px;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .theme-toggle-btn:hover {
+      transform: scale(1.06); border-color: var(--ink-soft);
+    }
 
     .btn {
       display: inline-flex; align-items: center; gap: 9px;
@@ -177,9 +217,9 @@ const GlobalStyles = () => (
     }
 
     /* ── Ecosystem flow ── */
-    .eco-section { position: relative; overflow: hidden; background: var(--bg-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .eco-section { position: relative; overflow: hidden; background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .eco-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-    .eco-grid { position: absolute; inset: 0; opacity: .32;
+    .eco-grid { position: absolute; inset: 0; opacity: .45;
       background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
       background-size: 46px 46px;
       -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 46%, #000 0%, transparent 80%);
@@ -199,21 +239,21 @@ const GlobalStyles = () => (
     .eco-card { position: relative; flex: 0 0 clamp(150px, 15vw, 178px); align-self: center;
       display: flex; flex-direction: column; align-items: flex-start;
       background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 22px 18px 20px;
-      box-shadow: 0 14px 30px -18px rgba(0,0,0,.7);
+      box-shadow: 0 14px 30px -18px rgba(0,0,0,0.15);
       opacity: 0; transform: translateY(20px);
       transition: opacity .55s ease, transform .55s cubic-bezier(.22,1,.36,1), box-shadow .3s, border-color .3s; }
     .eco-in .eco-card { opacity: 1; transform: none; }
-    .eco-card:hover { transform: translateY(-4px); box-shadow: 0 24px 46px -22px rgba(0,0,0,.85); border-color: var(--line-strong); }
+    .eco-card:hover { transform: translateY(-4px); box-shadow: 0 24px 46px -22px rgba(0,0,0,0.25); border-color: var(--line-strong); }
 
     .eco-title { font-size: 15px; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; color: var(--ink); }
     .eco-desc { font-size: 12.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.5; margin-top: 7px; }
 
     .eco-core { flex-basis: clamp(166px, 16.5vw, 198px); padding: 26px 20px 22px;
       background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--grad) border-box; border: 1.5px solid transparent;
-      box-shadow: 0 24px 50px -22px rgba(238,9,121,.4), 0 10px 24px -16px rgba(0,0,0,.8); }
+      box-shadow: 0 20px 40px -20px rgba(238,9,121,.3); }
     .eco-badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
       padding: 4px 9px; border-radius: 999px; margin-bottom: 14px; color: #fff;
-      background: var(--grad-soft); border: 1px solid rgba(238,9,121,.4); }
+      background: var(--grad); }
 
     .eco-line { position: relative; flex: 0 0 clamp(26px, 3vw, 46px); align-self: center; height: 2px; overflow: hidden;
       background: var(--line); border-radius: 2px; transform: scaleX(0); transform-origin: left center;
@@ -237,7 +277,7 @@ const GlobalStyles = () => (
       position: relative; width: 100%; aspect-ratio: 4 / 5;
       border-radius: 12px; overflow: hidden; border: 1px solid var(--line);
       background: var(--surface);
-      box-shadow: 0 18px 40px -16px rgba(0,0,0,0.45);
+      box-shadow: 0 18px 40px -16px rgba(0,0,0,0.25);
     }
     .portrait img {
       width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; display: block;
@@ -247,7 +287,7 @@ const GlobalStyles = () => (
     .portrait .caption {
       position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px;
       display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to top, rgba(8,8,8,0.75), rgba(8,8,8,0)); color: #fff;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0)); color: #fff;
     }
     .portrait .caption .cap-name { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
     .portrait .caption .cap-loc { font-family: 'JetBrains Mono', monospace; font-size: 11px; opacity: 0.7; }
@@ -261,7 +301,7 @@ const GlobalStyles = () => (
       background-size: 64px 64px;
       -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 0%, transparent 75%);
       mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, #000 0%, transparent 75%);
-      opacity:.6;
+      opacity:.75;
     }
     @keyframes glowPulse { 0%,100%{opacity:.5; transform:scale(1);} 50%{opacity:.85; transform:scale(1.06);} }
     .hero-glow {
@@ -306,9 +346,6 @@ const STATS = [
   { n: "3+", l: "Global Tech Platforms" },
 ];
 
-/* ─────────────────────────────────────────────
-   CASE STUDIES (Direct Image Mapping)
-───────────────────────────────────────────── */
 const CASE_STUDIES = [
   {
     id: "ubank-digital-banking",
@@ -535,7 +572,7 @@ const EXPERIENCE = [
     role: "Product Designer",
     period: "Jun 2025 — Present",
     industry: "Design Systems & Product Experience · USA / Remote",
-    desc: "Designed user-centered workflows across web and digital experiences. Built and maintained scalable design systems, tokens, and variables. Partnered with engineers via Figma Dev Mode to strengthen design-to-development handoffs, while using Google Analytics and Mixpanel to drive data-informed improvements.",
+    desc: "Designed user-centered workflows across web and digital experiences. Built and maintained scalable design systems, tokens, and variables. Partnered with engineers via Figma Dev Mode to strengthen design-to-development handoffs, while using Google Analytics and Mixpanel to drive data-informed improvements[cite: 1].",
     tags: ["Figma Dev Mode", "Design Systems", "Design Tokens", "GA4", "Mixpanel", "WCAG"],
   },
   {
@@ -543,7 +580,7 @@ const EXPERIENCE = [
     role: "User Experience Designer",
     period: "Jul 2024 — May 2025",
     industry: "Social & Content Platforms · USA / Remote",
-    desc: "Created user-centered product experiences for social and content-focused features. Translated user research and persona studies into flows, mockups, and interactive prototypes. Supported design QA, accessibility compliance, and cross-functional Agile sprints.",
+    desc: "Created user-centered product experiences for social and content-focused features. Translated user research and persona studies into flows, mockups, and interactive prototypes. Supported design QA, accessibility compliance, and cross-functional Agile sprints[cite: 1].",
     tags: ["User Research", "Interaction Design", "Prototyping", "Usability Testing", "Agile"],
   },
   {
@@ -551,7 +588,7 @@ const EXPERIENCE = [
     role: "UI/UX Designer",
     period: "Aug 2020 — Jul 2023",
     industry: "B2C SaaS Products · Hyderabad, India",
-    desc: "Designed and launched 2 B2C SaaS platforms end-to-end, contributing to a 58% increase in active users in 3 months. Analyzed user sessions with Hotjar and Google Analytics to optimize user flows, while building reusable component libraries for responsive web and mobile applications.",
+    desc: "Designed and launched 2 B2C SaaS platforms end-to-end, contributing to a 58% increase in active users in 3 months[cite: 1]. Analyzed user sessions with Hotjar and Google Analytics to optimize user flows, while building reusable component libraries for responsive web and mobile applications[cite: 1].",
     tags: ["B2C SaaS", "58% Growth", "Hotjar", "Google Analytics", "Component Library", "Wireframing"],
   },
 ];
@@ -671,9 +708,9 @@ function useInView(threshold = 0.18) {
 }
 
 /* ─────────────────────────────────────────────
-   NAV
+   NAV (With Light / Dark Mode Toggle)
 ───────────────────────────────────────────── */
-function Nav({ page, go }) {
+function Nav({ page, go, theme, toggleTheme }) {
   const scrolled = useScrolled();
   const [open, setOpen] = useState(false);
   const links = [
@@ -696,9 +733,7 @@ function Nav({ page, go }) {
         right: 0,
         zIndex: 100,
         transition: "border-color .3s, backdrop-filter .3s, background .3s",
-        background: scrolled
-          ? "color-mix(in srgb, var(--bg) 82%, transparent)"
-          : "transparent",
+        background: scrolled ? "var(--nav-glass)" : "transparent",
         backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled
           ? "1px solid var(--line)"
@@ -750,7 +785,7 @@ function Nav({ page, go }) {
 
         <nav
           className="desktop-nav"
-          style={{ display: "flex", gap: 30, alignItems: "center" }}
+          style={{ display: "flex", gap: 24, alignItems: "center" }}
         >
           {links.map(({ label, p }) => (
             <button
@@ -762,6 +797,17 @@ function Nav({ page, go }) {
               {label}
             </button>
           ))}
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle-btn"
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+
           <button
             className="btn btn-fill"
             onClick={() => nav("contact")}
@@ -771,23 +817,35 @@ function Nav({ page, go }) {
           </button>
         </nav>
 
-        <button
-          className="mobile-menu"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          <span
-            style={{
-              transform: open ? "rotate(45deg) translateY(6px)" : "none",
-            }}
-          />
-          <span style={{ opacity: open ? 0 : 1 }} />
-          <span
-            style={{
-              transform: open ? "rotate(-45deg) translateY(-6px)" : "none",
-            }}
-          />
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {/* Mobile Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle-btn"
+            style={{ display: "inline-flex" }}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+
+          <button
+            className="mobile-menu"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+          >
+            <span
+              style={{
+                transform: open ? "rotate(45deg) translateY(6px)" : "none",
+              }}
+            />
+            <span style={{ opacity: open ? 0 : 1 }} />
+            <span
+              style={{
+                transform: open ? "rotate(-45deg) translateY(-6px)" : "none",
+              }}
+            />
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -1012,14 +1070,14 @@ function HeroVisual() {
           position: absolute; left: 50%; top: 50%;
           width: calc(var(--rad) * 2); height: calc(var(--rad) * 2);
           transform: translate(-50%,-50%); border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.07);
+          border: 1px solid var(--line);
         }
         .hv-lightarm { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: rotate(var(--a)); }
         .hv-lightnode {
-          position: absolute; left: 0; top: 0; width: 3px; height: 3px; border-radius: 50%; margin: -1.5px;
+          position: absolute; left: 0; top: 0; width: 4px; height: 4px; border-radius: 50%; margin: -2px;
           transform: translateY(calc(-1 * var(--rad)));
-          background: rgba(255,255,255,0.7);
-          box-shadow: 0 0 8px 1px rgba(255,160,90,0.6); opacity: 0.5;
+          background: var(--ink);
+          box-shadow: 0 0 8px 1px rgba(255,160,90,0.6); opacity: 0.65;
         }
         .hv-arm { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: rotate(var(--a)); }
         .hv-armlen { position: absolute; left: 0; top: 0; transform: translateY(calc(-1 * var(--rad))); }
@@ -1031,13 +1089,13 @@ function HeroVisual() {
         .hv-card {
           position: absolute; left: 0; top: 0; transform: translate(-50%,-50%);
           display: inline-flex; align-items: center; gap: 6px;
-          max-width: 104px; padding: 6px 10px; border-radius: 14px;
-          background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.10);
+          max-width: 110px; padding: 6px 10px; border-radius: 14px;
+          background: var(--card-glass); border: 1px solid var(--card-border);
           backdrop-filter: blur(9px); pointer-events: auto; cursor: default;
-          box-shadow: 0 8px 22px -14px rgba(0,0,0,0.8);
+          box-shadow: 0 8px 22px -10px rgba(0,0,0,0.15);
           transition: transform .25s ease, background .25s;
         }
-        .hv-card:hover { transform: translate(-50%,-50%) translateY(-4px) scale(1.02); background: rgba(255,255,255,0.08); }
+        .hv-card:hover { transform: translate(-50%,-50%) translateY(-4px) scale(1.02); }
         .hv-pip { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--grad); }
         .hv-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; line-height: 1.25; color: var(--ink-soft); }
 
@@ -1052,8 +1110,8 @@ function HeroVisual() {
           .hv-mobile { display: block; position: absolute; top: 60px; right: 12px; width: 130px; height: 200px; }
           .hv-m-card {
             position: absolute; display: inline-flex; align-items: center; gap: 6px;
-            padding: 6px 10px; border-radius: 14px; background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.09); backdrop-filter: blur(8px);
+            padding: 6px 10px; border-radius: 14px; background: var(--card-glass);
+            border: 1px solid var(--card-border); backdrop-filter: blur(8px);
             opacity: 0; animation: hvMobileFade 9s ease-in-out infinite;
           }
           .hv-m-card:nth-child(2) { top: 0; right: 0; animation-delay: 0s; }
@@ -1103,8 +1161,7 @@ function HeroVisual() {
 }
 
 /* ─────────────────────────────────────────────
-   REVEAL / SAFE IMAGE COMPONENT
-   Auto-handles missing image paths with a clean preview card
+   SAFE IMAGE COMPONENT
 ───────────────────────────────────────────── */
 function SafeImage({ src, alt, style, className }) {
   const [error, setError] = useState(false);
@@ -1115,7 +1172,7 @@ function SafeImage({ src, alt, style, className }) {
         style={{
           width: "100%",
           minHeight: 220,
-          background: "linear-gradient(135deg, #18181b 0%, #09090b 100%)",
+          background: "var(--surface)",
           border: "1px dashed var(--line-strong)",
           borderRadius: 14,
           display: "flex",
@@ -1154,7 +1211,7 @@ function SafeImage({ src, alt, style, className }) {
         borderRadius: 14,
         border: "1px solid var(--line)",
         background: "var(--surface)",
-        boxShadow: "0 24px 60px -20px rgba(0,0,0,0.6)",
+        boxShadow: "0 24px 60px -20px rgba(0,0,0,0.15)",
         objectFit: "cover",
         ...style,
       }}
@@ -1647,7 +1704,7 @@ function EcosystemFlow() {
 }
 
 /* ─────────────────────────────────────────────
-   CASE STUDY PAGE (With Fixed Universal Showcase)
+   CASE STUDY PAGE
 ───────────────────────────────────────────── */
 function CaseStudyPage({ cs, go, openCase }) {
   const nextIdx =
@@ -1776,7 +1833,7 @@ function CaseStudyPage({ cs, go, openCase }) {
           </div>
         </div>
 
-        {/* HERO SHOWCASE IMAGE (Always visible) */}
+        {/* HERO SHOWCASE IMAGE */}
         <div
           className="wrap hero-in"
           style={{ position: "relative", zIndex: 1, paddingBottom: 60 }}
@@ -2016,7 +2073,7 @@ function CaseStudyPage({ cs, go, openCase }) {
                 <div
                   key={g.group}
                   style={{
-                    background: "var(--bg)",
+                    background: "var(--bg-2)",
                     border: "1px solid var(--line)",
                     borderRadius: 14,
                     padding: "30px 28px",
@@ -2349,7 +2406,7 @@ function AboutPage({ go }) {
               {strengths.map((s) => (
                 <div
                   key={s.t}
-                  style={{ background: "var(--bg)", padding: "20px 20px" }}
+                  style={{ background: "var(--surface)", padding: "20px 20px" }}
                 >
                   <div
                     className="font-mono"
@@ -2797,7 +2854,7 @@ function Footer({ go }) {
     <footer
       style={{
         borderTop: "1px solid var(--line)",
-        background: "var(--bg-deep)",
+        background: "var(--bg-2)",
       }}
     >
       <div
@@ -2865,6 +2922,11 @@ function Footer({ go }) {
 export default function Portfolio() {
   const [page, setPage] = useState("home");
   const [cs, setCs] = useState(null);
+  const [theme, setTheme] = useState("dark"); // "dark" | "light"
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   const go = (p) => {
     setPage(p);
@@ -2877,9 +2939,9 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="pf-root">
+    <div className={`pf-root ${theme}`}>
       <GlobalStyles />
-      <Nav page={page} go={go} />
+      <Nav page={page} go={go} theme={theme} toggleTheme={toggleTheme} />
       {page === "home" && <HomePage go={go} openCase={openCase} />}
       {page === "case-study" && cs && (
         <CaseStudyPage cs={cs} go={go} openCase={openCase} />
