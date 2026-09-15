@@ -710,6 +710,9 @@ function useInView(threshold = 0.18) {
 /* ─────────────────────────────────────────────
    NAV (With Light / Dark Mode Toggle)
 ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   NAV (Single Theme Toggle)
+───────────────────────────────────────────── */
 function Nav({ page, go, theme, toggleTheme }) {
   const scrolled = useScrolled();
   const [open, setOpen] = useState(false);
@@ -749,6 +752,7 @@ function Nav({ page, go, theme, toggleTheme }) {
           justifyContent: "space-between",
         }}
       >
+        {/* Brand / Logo */}
         <button
           onClick={() => nav("home")}
           style={{
@@ -783,22 +787,34 @@ function Nav({ page, go, theme, toggleTheme }) {
           </span>
         </button>
 
-        <nav
-          className="desktop-nav"
-          style={{ display: "flex", gap: 24, alignItems: "center" }}
-        >
-          {links.map(({ label, p }) => (
-            <button
-              key={p}
-              onClick={() => nav(p)}
-              className={`nav-link hover-line${page === p ? " grad-text" : ""}`}
-              style={{ color: page === p ? undefined : "var(--ink-soft)" }}
-            >
-              {label}
-            </button>
-          ))}
+        {/* Right Controls Container */}
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          {/* Desktop Links */}
+          <nav
+            className="desktop-nav"
+            style={{ display: "flex", gap: 24, alignItems: "center" }}
+          >
+            {links.map(({ label, p }) => (
+              <button
+                key={p}
+                onClick={() => nav(p)}
+                className={`nav-link hover-line${page === p ? " grad-text" : ""}`}
+                style={{ color: page === p ? undefined : "var(--ink-soft)" }}
+              >
+                {label}
+              </button>
+            ))}
 
-          {/* Theme Toggle Button */}
+            <button
+              className="btn btn-fill"
+              onClick={() => nav("contact")}
+              style={{ padding: "9px 16px" }}
+            >
+              Get In Touch
+            </button>
+          </nav>
+
+          {/* THE ONLY TOGGLE BUTTON (Visible across both desktop and mobile) */}
           <button
             onClick={toggleTheme}
             className="theme-toggle-btn"
@@ -808,26 +824,7 @@ function Nav({ page, go, theme, toggleTheme }) {
             {theme === "dark" ? "☀️" : "🌙"}
           </button>
 
-          <button
-            className="btn btn-fill"
-            onClick={() => nav("contact")}
-            style={{ padding: "9px 16px" }}
-          >
-            Get In Touch
-          </button>
-        </nav>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          {/* Mobile Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className="theme-toggle-btn"
-            style={{ display: "inline-flex" }}
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? "☀️" : "🌙"}
-          </button>
-
+          {/* Mobile Hamburger Menu Toggle */}
           <button
             className="mobile-menu"
             onClick={() => setOpen(!open)}
@@ -848,6 +845,7 @@ function Nav({ page, go, theme, toggleTheme }) {
         </div>
       </div>
 
+      {/* Mobile Menu Dropdown */}
       {open && (
         <div
           style={{
@@ -2952,4 +2950,4 @@ export default function Portfolio() {
       <Footer go={go} />
     </div>
   );
-}
+} 
