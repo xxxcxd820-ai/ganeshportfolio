@@ -686,6 +686,7 @@ function Nav({ page, go, theme, toggleTheme }) {
       >
         {/* Brand / Logo */}
         {/* Brand / Logo with Round Profile Image */}
+       {/* Brand / Logo */}
         <button
           onClick={() => nav("home")}
           style={{
@@ -694,46 +695,22 @@ function Nav({ page, go, theme, toggleTheme }) {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
-            gap: 12,
-            padding: 0,
+            gap: 10,
           }}
         >
-          {/* Round Avatar Image */}
-          <div
+          <span
             style={{
-              width: 34,
-              height: 34,
-              borderRadius: "50%",
-              padding: "1.5px", // gradient outline thickness
+              width: 9,
+              height: 9,
               background: "var(--grad)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
+              borderRadius: 2,
+              display: "inline-block",
             }}
-          >
-            <img
-              src={PORTRAIT}
-              alt="Ganesh Avatar"
-              onError={(e) => {
-                // Image fail aithe gradient dot chupisthundi
-                e.currentTarget.style.display = "none";
-              }}
-              style={{
-                width: "100%",
-                height: "100%",
-                borderRadius: "50%",
-                objectFit: "cover",
-                background: "var(--surface)",
-                display: "block",
-              }}
-            />
-          </div>
-
+          />
           <span
             className="font-display"
             style={{
-              fontSize: 18,
+              fontSize: 17,
               fontWeight: 600,
               color: "var(--ink)",
               letterSpacing: "-0.02em",
