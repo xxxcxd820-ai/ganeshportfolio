@@ -1535,7 +1535,7 @@ function HomePage({ go, openCase }) {
         <div className="portrait reveal">
           <SafeImage src={PORTRAIT} alt="Ganesh - Senior Product Designer" />
           <div className="caption">
-            <span className="cap-name">Ganesh</span>
+            <span className="cap-name">Ganesh Kolluri</span>
             <span className="cap-loc">Senior Product Designer</span>
           </div>
         </div>
@@ -2689,7 +2689,7 @@ function AboutPage({ go }) {
     <main style={{ paddingTop: 70 }}>
       <div className="wrap" style={{ padding: "64px 40px 52px" }}>
         <div className="anim-up d1">
-          <span className="eyebrow">About Ganesh</span>
+          <span className="eyebrow">About Ganesh Kolluri</span>
         </div>
         <h1
           className="font-display anim-up d2"
@@ -2725,9 +2725,9 @@ function AboutPage({ go }) {
       >
         <div style={{ position: "sticky", top: 100 }}>
           <div className="portrait reveal">
-            <SafeImage src={PORTRAIT} alt="Ganesh - Senior Product Designer" />
+            <SafeImage src={PORTRAIT} alt="Ganesh Kolluri - Senior Product Designer" />
             <div className="caption">
-              <span className="cap-name">Ganesh</span>
+              <span className="cap-name">Ganesh Kolluri</span>
               <span className="cap-loc">Senior Designer</span>
             </div>
           </div>
@@ -3480,7 +3480,7 @@ function Footer({ go }) {
                 letterSpacing: "-0.02em",
               }}
             >
-              Ganesh.
+              Ganesh Kolluri.
             </div>
             <div
               className="font-mono"
@@ -3490,7 +3490,7 @@ function Footer({ go }) {
                 marginTop: 3,
               }}
             >
-              © {new Date().getFullYear()} Ganesh. All rights reserved.
+              © {new Date().getFullYear()} Ganesh Kolluri. All rights reserved.
             </div>
           </div>
         </div>
