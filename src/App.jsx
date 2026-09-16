@@ -2834,10 +2834,10 @@ function ExperiencePage({ go }) {
 
   // Key quantitative & leadership highlights from Ganesh's resume
   const EXP_METRICS = [
-    { num: "5+ Yrs", label: "Product & UX Design[cite: 1]" },
-    { num: "58%", label: "Active User Growth (SaaS)[cite: 1]" },
-    { num: "100%", label: "WCAG & Accessible UI[cite: 1]" },
-    { num: "0-to-1", label: "Design Systems Built[cite: 1]" },
+    { num: "5+ Yrs", label: "Product & UX Design" },
+    { num: "58%", label: "Active User Growth (SaaS)" },
+    { num: "100%", label: "WCAG & Accessible UI" },
+    { num: "0-to-1", label: "Design Systems Built" },
   ];
 
   return (
@@ -2860,7 +2860,7 @@ function ExperiencePage({ go }) {
         >
           Over five years of{" "}
           <em className="grad-text" style={{ fontStyle: "italic", fontWeight: 400 }}>
-            shaping systems & shipping product[cite: 1].
+            shaping systems & shipping product.
           </em>
         </h1>
         <p
@@ -2874,7 +2874,7 @@ function ExperiencePage({ go }) {
             lineHeight: 1.7,
           }}
         >
-          A proven track record partnering with Product Managers, Engineers, and Researchers across Figma, TikTok, and scaling B2C SaaS platforms to deliver accessible, data-driven digital experiences[cite: 1].
+          A proven track record partnering with Product Managers, Engineers, and Researchers across Figma, TikTok, and scaling B2C SaaS platforms to deliver accessible, data-driven digital experiences.
         </p>
 
         {/* Quick KPI Strip */}
