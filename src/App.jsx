@@ -2723,7 +2723,7 @@ function AboutPage({ go }) {
                     textTransform: "uppercase",
                   }}
                 >
-                  {items.length} competencies
+                 
                 </div>
               </div>
             ))}
