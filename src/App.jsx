@@ -716,7 +716,7 @@ function Nav({ page, go, theme, toggleTheme }) {
               letterSpacing: "-0.02em",
             }}
           >
-            Ganesh
+            Ganesh Kolluri
             <span style={{ color: "var(--ink-muted)", fontWeight: 400 }}>.</span>
           </span>
         </button>
