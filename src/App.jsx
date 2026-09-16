@@ -337,7 +337,6 @@ const PROFILE = {
   email: "ganesh.design@example.com",
   linkedin: "linkedin.com/in/ganesh-ux",
   resume: "/Ganesh_Resume.pdf",
-  location: "USA · Remote",
 };
 
 const STATS = [
@@ -359,11 +358,11 @@ const CASE_STUDIES = [
     tags: ["Fintech UX", "Mobile Banking", "Figma Dev Mode", "Design Systems", "WCAG 2.1 AA"],
     detailTitle: "UBank Digital Banking & Financial Management App",
     detailSubtitle: "Transforming complex financial workflows into accessible, user-friendly mobile banking journeys.",
-    heroImage: "/assets/ubank_hero.png",
+    heroImage: "/assets/UBank1.png",
     screens: [
-      { title: "Smart Dashboard & Balance Insights", src: "/assets/ubank_screen1.png" },
-      { title: "One-Tap P2P Instant Transfer Flow", src: "/assets/ubank_screen2.png" },
-      { title: "Card Security & Financial Controls", src: "/assets/ubank_screen3.png" },
+      { title: "Smart Dashboard & Balance Insights", src: "/assets/UBank2.png" },
+      { title: "One-Tap P2P Instant Transfer Flow", src: "/assets/UBank3.png" },
+      { title: "Card Security & Financial Controls", src: "/assets/UBank4.png" },
     ],
     overview: [
       "Led the end-to-end design lifecycle for UBank's flagship digital banking platform across iOS and Android.",
@@ -571,16 +570,16 @@ const EXPERIENCE = [
     co: "Figma",
     role: "Product Designer",
     period: "Jun 2025 — Present",
-    industry: "Design Systems & Product Experience · USA / Remote",
-    desc: "Designed user-centered workflows across web and digital experiences. Built and maintained scalable design systems, tokens, and variables. Partnered with engineers via Figma Dev Mode to strengthen design-to-development handoffs, while using Google Analytics and Mixpanel to drive data-informed improvements[cite: 1].",
+    industry: "Design Systems & Product Experience",
+    desc: "Designed user-centered workflows across web and digital experiences. Built and maintained scalable design systems, tokens, and variables. Partnered with engineers via Figma Dev Mode to strengthen design-to-development handoffs, while using Google Analytics and Mixpanel to drive data-informed improvements.",
     tags: ["Figma Dev Mode", "Design Systems", "Design Tokens", "GA4", "Mixpanel", "WCAG"],
   },
   {
     co: "TikTok",
     role: "User Experience Designer",
     period: "Jul 2024 — May 2025",
-    industry: "Social & Content Platforms · USA / Remote",
-    desc: "Created user-centered product experiences for social and content-focused features. Translated user research and persona studies into flows, mockups, and interactive prototypes. Supported design QA, accessibility compliance, and cross-functional Agile sprints[cite: 1].",
+    industry: "Social & Content Platforms",
+    desc: "Created user-centered product experiences for social and content-focused features. Translated user research and persona studies into flows, mockups, and interactive prototypes. Supported design QA, accessibility compliance, and cross-functional Agile sprints.",
     tags: ["User Research", "Interaction Design", "Prototyping", "Usability Testing", "Agile"],
   },
   {
@@ -588,7 +587,7 @@ const EXPERIENCE = [
     role: "UI/UX Designer",
     period: "Aug 2020 — Jul 2023",
     industry: "B2C SaaS Products · Hyderabad, India",
-    desc: "Designed and launched 2 B2C SaaS platforms end-to-end, contributing to a 58% increase in active users in 3 months[cite: 1]. Analyzed user sessions with Hotjar and Google Analytics to optimize user flows, while building reusable component libraries for responsive web and mobile applications[cite: 1].",
+    desc: "Designed and launched 2 B2C SaaS platforms end-to-end, contributing to a 58% increase in active users in 3 months. Analyzed user sessions with Hotjar and Google Analytics to optimize user flows, while building reusable component libraries for responsive web and mobile applications.",
     tags: ["B2C SaaS", "58% Growth", "Hotjar", "Google Analytics", "Component Library", "Wireframing"],
   },
 ];
@@ -719,8 +718,8 @@ function Nav({ page, go, theme, toggleTheme }) {
   const links = [
     { label: "About", p: "about" },
     { label: "Work", p: "home" },
-    { label: "Experience", p: "experience" },
-    { label: "Contact", p: "contact" },
+    { label: "Projects", p: "projects" },
+    { label: "Experience", p: "experience" }
   ];
   const nav = (p) => {
     go(p);
@@ -753,6 +752,7 @@ function Nav({ page, go, theme, toggleTheme }) {
         }}
       >
         {/* Brand / Logo */}
+        {/* Brand / Logo with Round Profile Image */}
         <button
           onClick={() => nav("home")}
           style={{
@@ -761,22 +761,46 @@ function Nav({ page, go, theme, toggleTheme }) {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: 12,
+            padding: 0,
           }}
         >
-          <span
+          {/* Round Avatar Image */}
+          <div
             style={{
-              width: 9,
-              height: 9,
+              width: 34,
+              height: 34,
+              borderRadius: "50%",
+              padding: "1.5px", // gradient outline thickness
               background: "var(--grad)",
-              borderRadius: 2,
-              display: "inline-block",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
             }}
-          />
+          >
+            <img
+              src={PORTRAIT}
+              alt="Ganesh Avatar"
+              onError={(e) => {
+                // Image fail aithe gradient dot chupisthundi
+                e.currentTarget.style.display = "none";
+              }}
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                objectFit: "cover",
+                background: "var(--surface)",
+                display: "block",
+              }}
+            />
+          </div>
+
           <span
             className="font-display"
             style={{
-              fontSize: 17,
+              fontSize: 18,
               fontWeight: 600,
               color: "var(--ink)",
               letterSpacing: "-0.02em",
@@ -1276,7 +1300,7 @@ function HomePage({ go, openCase }) {
             >
               Product Designer and UX/UI professional with 5+ years of experience
               designing user-centered digital products and SaaS experiences across
-              web and mobile platforms[cite: 1].
+              web and mobile platforms.
             </p>
             <p
               style={{
@@ -1295,7 +1319,7 @@ function HomePage({ go, openCase }) {
               >
                 intuitive, scalable, and accessible experiences
               </em>{" "}
-              through end-to-end product design lifecycles[cite: 1].
+              through end-to-end product design lifecycles.
             </p>
             <div
               style={{
@@ -1460,7 +1484,79 @@ function HomePage({ go, openCase }) {
           </div>
         ))}
       </div>
+        
+{/* HOME PAGE PROJECTS PREVIEW */}
+      <section className="wrap" style={{ padding: "92px 40px 40px", borderTop: "1px solid var(--line)" }}>
+        <SectionHead kicker="Development & UI" title="Featured Projects" right="Interactive builds" />
 
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 32, marginTop: 12 }}>
+          {PROJECTS.map((proj) => (
+            <div
+              key={proj.id}
+              className="reveal"
+              style={{
+                background: "var(--surface)",
+                border: "1px solid var(--line)",
+                borderRadius: 20,
+                overflow: "hidden",
+                cursor: "pointer",
+                transition: "transform 0.3s ease, border-color 0.3s ease",
+              }}
+              onClick={() => go("projects")}
+            >
+              <div style={{ height: 210, width: "100%", overflow: "hidden", position: "relative" }}>
+                <img
+                  src={proj.image}
+                  alt={proj.title}
+                  loading="lazy"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+                <span
+                  style={{
+                    position: "absolute",
+                    top: 14,
+                    left: 14,
+                    background: "rgba(0,0,0,0.65)",
+                    backdropFilter: "blur(6px)",
+                    color: "#fff",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 9.5,
+                    padding: "4px 10px",
+                    borderRadius: 999,
+                    border: "1px solid rgba(255,255,255,0.15)",
+                  }}
+                >
+                  {proj.category}
+                </span>
+              </div>
+              <div style={{ padding: "24px 22px" }}>
+                <div className="font-mono grad-text" style={{ fontSize: 11, fontWeight: 700 }}>
+                  {proj.year}
+                </div>
+                <h3 className="font-display" style={{ fontSize: 20, fontWeight: 600, marginTop: 6, letterSpacing: "-0.015em" }}>
+                  {proj.title}
+                </h3>
+                <p style={{ fontSize: 14, color: "var(--ink-soft)", lineHeight: 1.6, marginTop: 8 }}>
+                  {proj.desc}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 16 }}>
+                  {proj.tags.slice(0, 3).map((t) => (
+                    <span key={t} className="tag" style={{ fontSize: 10, padding: "3px 8px" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ textAlign: "center", marginTop: 44 }}>
+          <button className="btn btn-ghost" onClick={() => go("projects")}>
+            Explore All Projects →
+          </button>
+        </div>
+      </section>
       {/* ABOUT SNIPPET */}
       <section
         className="wrap grid-2"
@@ -1507,7 +1603,7 @@ function HomePage({ go, openCase }) {
           >
             Experienced in building design systems, reusable component
             libraries, design tokens, and interaction patterns while applying
-            WCAG and accessibility-first principles[cite: 1].
+            WCAG and accessibility-first principles[ ].
           </p>
           <p
             style={{
@@ -1520,7 +1616,7 @@ function HomePage({ go, openCase }) {
           >
             A collaborative partner to Product Managers, Engineers, and UX
             Researchers with hands-on experience driving Agile sprints, Figma
-            Dev Mode handoffs, and behavioral analytics via Mixpanel and GA4[cite: 1].
+            Dev Mode handoffs, and behavioral analytics via Mixpanel and GA4[ ].
           </p>
           <button className="btn btn-ghost" onClick={() => go("about")}>
             Read full background →
@@ -1600,19 +1696,68 @@ function HomePage({ go, openCase }) {
     </main>
   );
 }
-
+const PROJECTS = [
+  {
+    id: "fintech-crypto-dashboard",
+    title: "Apex Finance — Web3 Asset Dashboard",
+    category: "Fintech & Web3 Platform",
+    year: "2025",
+    desc: "A real-time cryptocurrency and fiat wealth management interface featuring live portfolio tracking, biometric transaction signing, and dynamic light/dark charts.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Figma", "Chart.js"],
+    liveUrl: "https://example.com/demo-finance",
+    githubUrl: "https://github.com/example/finance-dashboard",
+    stats: [
+      { label: "Active Traders", val: "120K+" },
+      { label: "Transaction Speed", val: "<1.2s" },
+      { label: "System Uptime", val: "99.98%" },
+    ],
+  },
+  {
+    id: "ai-collaborative-workspace",
+    title: "NovaDocs — Real-time AI Note Canvas",
+    category: "SaaS Productivity Tool",
+    year: "2024",
+    desc: "Collaborative whiteboard and markdown editor powered by generative AI autocomplete, multi-cursor presence, and seamless Figma component embeds.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    tags: ["Next.js", "Socket.IO", "Prisma ORM", "Design Tokens", "Framer Motion"],
+    liveUrl: "https://example.com/demo-novadocs",
+    githubUrl: "https://github.com/example/novadocs-app",
+    stats: [
+      { label: "Daily Edits", val: "450K+" },
+      { label: "Sync Latency", val: "18ms" },
+      { label: "Retention Rate", val: "68%" },
+    ],
+  },
+  {
+    id: "luxury-ecommerce-experience",
+    title: "Aura Haute — Luxury Fashion Atelier",
+    category: "E-Commerce Experience",
+    year: "2023",
+    desc: "High-fashion e-commerce platform blending minimal typography, 3D interactive bag and sneaker inspection, and streamlined Apple Pay checkout.",
+    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
+    tags: ["Three.js", "Shopify Headless", "UI/UX Architecture", "WCAG 2.1"],
+    liveUrl: "https://example.com/demo-aura",
+    githubUrl: "https://github.com/example/aura-fashion",
+    stats: [
+      { label: "Conversion Lift", val: "+34%" },
+      { label: "Avg Session Time", val: "4m 12s" },
+      { label: "Bounce Rate", val: "22%" },
+    ],
+  },
+];
 /* ─────────────────────────────────────────────
    ECOSYSTEM COMPONENT
 ───────────────────────────────────────────── */
 function EcosystemFlow() {
   const [ref, inView] = useInView(0.16);
   const nodes = [
-    { title: "User Discovery", desc: "Interviews, surveys & personas[cite: 1]." },
-    { title: "FigJam Ideation", desc: "Journey maps & architecture[cite: 1].", core: true },
-    { title: "Figma Prototyping", desc: "Design tokens & interactive UI[cite: 1].", core: true },
-    { title: "Usability Testing", desc: "Heuristic evaluation & QA[cite: 1]." },
-    { title: "Figma Dev Mode", desc: "Annotations & code specs[cite: 1].", core: true },
-    { title: "GA4 / Mixpanel", desc: "A/B metrics & continuous growth[cite: 1]." },
+    { title: "User Discovery", desc: "Interviews, surveys & personas." },
+    { title: "FigJam Ideation", desc: "Journey maps & architecture.", core: true },
+    { title: "Figma Prototyping", desc: "Design tokens & interactive UI.", core: true },
+    { title: "Usability Testing", desc: "Heuristic evaluation & QA." },
+    { title: "Figma Dev Mode", desc: "Annotations & code specs.", core: true },
+    { title: "GA4 / Mixpanel", desc: "A/B metrics & continuous growth." },
   ];
 
   return (
@@ -1663,7 +1808,7 @@ function EcosystemFlow() {
             }}
           >
             An end-to-end product design lifecycle driven by behavioral data,
-            reusable design tokens, and seamless engineering handoffs[cite: 1].
+            reusable design tokens, and seamless engineering handoffs.
           </p>
         </div>
 
@@ -2274,30 +2419,30 @@ function AboutPage({ go }) {
   const story = [
     {
       h: "Philosophy & Purpose.",
-      b: "I believe great product design lives right at the intersection of customer empathy, business strategy, and engineering viability[cite: 1]. Over the past 5+ years, I have shaped B2C and SaaS platforms by translating raw user research and business targets into elegant, scalable digital systems[cite: 1].",
+      b: "I believe great product design lives right at the intersection of customer empathy, business strategy, and engineering viability. Over the past 5+ years, I have shaped B2C and SaaS platforms by translating raw user research and business targets into elegant, scalable digital systems.",
     },
     {
       h: "Systems & Discovery.",
-      b: "From Figma component libraries and token architectures to user journey mapping and A/B experimentation, my approach is grounded in end-to-end thinking[cite: 1]. I partner closely with engineers via Figma Dev Mode to ensure designs execute with pixel perfection, zero spec ambiguity, and strict WCAG accessibility compliance[cite: 1].",
+      b: "From Figma component libraries and token architectures to user journey mapping and A/B experimentation, my approach is grounded in end-to-end thinking. I partner closely with engineers via Figma Dev Mode to ensure designs execute with pixel perfection, zero spec ambiguity, and strict WCAG accessibility compliance.",
     },
   ];
 
   const strengths = [
     {
       t: "End-to-End Ownership",
-      d: "Guiding products from exploratory UX research and journey maps to production QA[cite: 1].",
+      d: "Guiding products from exploratory UX research and journey maps to production QA.",
     },
     {
       t: "Design Systems & Tokens",
-      d: "Building reusable component systems that accelerate cross-functional sprint velocity[cite: 1].",
+      d: "Building reusable component systems that accelerate cross-functional sprint velocity.",
     },
     {
       t: "Data-Driven Iteration",
-      d: "Leveraging GA4, Mixpanel, and Hotjar to measure and elevate engagement[cite: 1].",
+      d: "Leveraging GA4, Mixpanel, and Hotjar to measure and elevate engagement.",
     },
     {
       t: "Engineering Symbiosis",
-      d: "Figma Dev Mode specs, annotations, and front-end familiarity (HTML/CSS/JS)[cite: 1].",
+      d: "Figma Dev Mode specs, annotations, and front-end familiarity (HTML/CSS/JS).",
     },
   ];
 
@@ -2323,7 +2468,7 @@ function AboutPage({ go }) {
             className="grad-text"
             style={{ fontStyle: "italic", fontWeight: 400 }}
           >
-            SaaS, mobile, and digital product experiences[cite: 1].
+            SaaS, mobile, and digital product experiences.
           </em>
         </h1>
       </div>
@@ -2344,7 +2489,7 @@ function AboutPage({ go }) {
             <SafeImage src={PORTRAIT} alt="Ganesh - Senior Product Designer" />
             <div className="caption">
               <span className="cap-name">Ganesh</span>
-              <span className="cap-loc">USA / Remote</span>
+              <span className="cap-loc">Senior Designer</span>
             </div>
           </div>
         </div>
@@ -2604,7 +2749,7 @@ function ExperiencePage({ go }) {
             className="grad-text"
             style={{ fontStyle: "italic", fontWeight: 400 }}
           >
-            delivering measurable impact[cite: 1].
+            delivering measurable impact.
           </em>
         </h1>
         <p
@@ -2620,7 +2765,7 @@ function ExperiencePage({ go }) {
         >
           From Figma and TikTok to high-growth SaaS platforms — building scalable
           design systems, conducting deep discovery, and partnering closely with
-          cross-functional teams[cite: 1].
+          cross-functional teams.
         </p>
       </div>
       <hr className="rule" style={{ margin: "0 40px" }} />
@@ -2738,7 +2883,218 @@ function ExperiencePage({ go }) {
     </main>
   );
 }
+/* ─────────────────────────────────────────────
+   DEDICATED PROJECTS PAGE
+   Professional, high-impact portfolio layout
+───────────────────────────────────────────── */
+function ProjectsPage({ go }) {
+  useScrollReveal("projects");
 
+  return (
+    <main style={{ paddingTop: 70 }}>
+      {/* Header */}
+      <div className="wrap" style={{ padding: "64px 40px 52px" }}>
+        <div className="anim-up d1">
+          <span className="eyebrow">Featured Portfolio</span>
+        </div>
+        <h1
+          className="font-display anim-up d2"
+          style={{
+            fontSize: "clamp(38px,6vw,78px)",
+            fontWeight: 600,
+            letterSpacing: "-0.035em",
+            lineHeight: 1.03,
+            maxWidth: 900,
+            marginTop: 14,
+          }}
+        >
+          Selected projects &amp;{" "}
+          <em className="grad-text" style={{ fontStyle: "italic", fontWeight: 400 }}>
+            live digital products.
+          </em>
+        </h1>
+        <p
+          className="anim-up d3"
+          style={{
+            fontSize: 17,
+            fontWeight: 300,
+            color: "var(--ink-soft)",
+            marginTop: 18,
+            maxWidth: 640,
+            lineHeight: 1.7,
+          }}
+        >
+          A curated gallery of full-stack web applications, SaaS tools, and design-led digital products built with emphasis on interaction precision and engineering execution.
+        </p>
+      </div>
+
+      <hr className="rule" style={{ margin: "0 40px" }} />
+
+      {/* Projects Showcase Stream */}
+      <div className="wrap" style={{ padding: "80px 40px", display: "flex", flexDirection: "column", gap: 96 }}>
+        {PROJECTS.map((proj, idx) => (
+          <article
+            key={proj.id}
+            className="reveal"
+            style={{
+              background: "var(--surface)",
+              border: "1px solid var(--line)",
+              borderRadius: 24,
+              overflow: "hidden",
+              boxShadow: "0 24px 60px -20px rgba(0,0,0,0.2)",
+              display: "grid",
+              gridTemplateColumns: idx % 2 === 0 ? "1.15fr 0.85fr" : "0.85fr 1.15fr",
+              gap: 0,
+              alignItems: "stretch",
+            }}
+          >
+            {/* Project Image Card */}
+            <div
+              style={{
+                order: idx % 2 === 0 ? 1 : 2,
+                position: "relative",
+                minHeight: 380,
+                background: "var(--bg-2)",
+                overflow: "hidden",
+                borderRight: idx % 2 === 0 ? "1px solid var(--line)" : "none",
+                borderLeft: idx % 2 !== 0 ? "1px solid var(--line)" : "none",
+              }}
+            >
+              <img
+                src={proj.image}
+                alt={proj.title}
+                loading="lazy"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  transition: "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: 16,
+                  left: 16,
+                  background: "var(--nav-glass)",
+                  backdropFilter: "blur(10px)",
+                  padding: "6px 14px",
+                  borderRadius: 100,
+                  border: "1px solid var(--line)",
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 10,
+                  color: "var(--ink)",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {proj.category}
+              </div>
+            </div>
+
+            {/* Project Details */}
+            <div
+              style={{
+                order: idx % 2 === 0 ? 2 : 1,
+                padding: "clamp(32px, 5vw, 56px)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                background: "var(--surface)",
+              }}
+            >
+              <div>
+                <div className="font-mono grad-text" style={{ fontSize: 12, fontWeight: 700, marginBottom: 8 }}>
+                  Project 0{idx + 1} · {proj.year}
+                </div>
+                <h2 className="font-display" style={{ fontSize: "clamp(24px, 3.2vw, 36px)", fontWeight: 600, letterSpacing: "-0.025em", lineHeight: 1.15 }}>
+                  {proj.title}
+                </h2>
+                <p style={{ fontSize: 15, fontWeight: 300, color: "var(--ink-soft)", lineHeight: 1.7, marginTop: 16 }}>
+                  {proj.desc}
+                </p>
+
+                {/* Tech Tags */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginTop: 22 }}>
+                  {proj.tags.map((t) => (
+                    <span key={t} className="tag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Metrics Grid */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gap: 16,
+                    marginTop: 32,
+                    paddingTop: 24,
+                    borderTop: "1px solid var(--line)",
+                  }}
+                >
+                  {proj.stats.map((st) => (
+                    <div key={st.label}>
+                      <div className="font-display grad-text" style={{ fontSize: 20, fontWeight: 700 }}>
+                        {st.val}
+                      </div>
+                      <div className="font-mono" style={{ fontSize: 10, color: "var(--ink-muted)", marginTop: 4, textTransform: "uppercase" }}>
+                        {st.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Links */}
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 36 }}>
+                <a
+                  href={proj.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-fill"
+                  style={{ padding: "10px 18px" }}
+                >
+                  Live Demo <span>↗</span>
+                </a>
+                <a
+                  href={proj.githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-ghost"
+                  style={{ padding: "10px 18px" }}
+                >
+                  Source Code <span>⌥</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* Footer CTA */}
+      <div style={{ background: "var(--surface)", borderTop: "1px solid var(--line)", textAlign: "center" }}>
+        <div className="wrap" style={{ padding: "76px 40px" }}>
+          <div className="reveal">
+            <span className="eyebrow" style={{ display: "inline-flex", justifyContent: "center" }}>
+              Collaborate
+            </span>
+            <h2 className="font-display" style={{ fontSize: "clamp(28px,4.5vw,52px)", fontWeight: 600, letterSpacing: "-0.03em", margin: "16px 0 28px" }}>
+              Have an ambitious build in mind?
+            </h2>
+            <button className="btn btn-fill" onClick={() => go("contact")}>
+              Let's Talk Architecture →
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
 /* ─────────────────────────────────────────────
    CONTACT PAGE
 ───────────────────────────────────────────── */
@@ -2845,6 +3201,7 @@ function Footer({ go }) {
   const links = [
     { label: "About", p: "about" },
     { label: "Work", p: "home" },
+    { label: "Projects", p: "projects" },
     { label: "Experience", p: "experience" },
     { label: "Contact", p: "contact" },
   ];
@@ -2941,12 +3298,14 @@ export default function Portfolio() {
       <GlobalStyles />
       <Nav page={page} go={go} theme={theme} toggleTheme={toggleTheme} />
       {page === "home" && <HomePage go={go} openCase={openCase} />}
+      {page === "projects" && <ProjectsPage go={go} />}
       {page === "case-study" && cs && (
         <CaseStudyPage cs={cs} go={go} openCase={openCase} />
       )}
       {page === "about" && <AboutPage go={go} />}
       {page === "experience" && <ExperiencePage go={go} />}
       {page === "contact" && <ContactPage />}
+
       <Footer go={go} />
     </div>
   );
