@@ -2825,31 +2825,42 @@ function AboutPage({ go }) {
 /* ─────────────────────────────────────────────
    EXPERIENCE PAGE
 ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   UPGRADED EXPERIENCE PAGE
+   High-impact vertical timeline with KPI badges
+───────────────────────────────────────────── */
 function ExperiencePage({ go }) {
   useScrollReveal("experience");
+
+  // Key quantitative & leadership highlights from Ganesh's resume
+  const EXP_METRICS = [
+    { num: "5+ Yrs", label: "Product & UX Design[cite: 1]" },
+    { num: "58%", label: "Active User Growth (SaaS)[cite: 1]" },
+    { num: "100%", label: "WCAG & Accessible UI[cite: 1]" },
+    { num: "0-to-1", label: "Design Systems Built[cite: 1]" },
+  ];
+
   return (
     <main style={{ paddingTop: 70 }}>
-      <div className="wrap" style={{ padding: "64px 40px 52px" }}>
+      {/* Header */}
+      <div className="wrap" style={{ padding: "64px 40px 40px" }}>
         <div className="anim-up d1">
-          <span className="eyebrow">Career Highlights</span>
+          <span className="eyebrow">Career Trajectory</span>
         </div>
         <h1
           className="font-display anim-up d2"
           style={{
-            fontSize: "clamp(38px,6vw,78px)",
+            fontSize: "clamp(38px,6vw,76px)",
             fontWeight: 600,
             letterSpacing: "-0.035em",
             lineHeight: 1.03,
-            maxWidth: 860,
+            maxWidth: 900,
             marginTop: 14,
           }}
         >
           Over five years of{" "}
-          <em
-            className="grad-text"
-            style={{ fontStyle: "italic", fontWeight: 400 }}
-          >
-            delivering measurable impact.
+          <em className="grad-text" style={{ fontStyle: "italic", fontWeight: 400 }}>
+            shaping systems & shipping product[cite: 1].
           </em>
         </h1>
         <p
@@ -2859,95 +2870,223 @@ function ExperiencePage({ go }) {
             fontWeight: 300,
             color: "var(--ink-soft)",
             marginTop: 18,
-            maxWidth: 620,
+            maxWidth: 680,
             lineHeight: 1.7,
           }}
         >
-          From Figma and TikTok to high-growth SaaS platforms — building scalable
-          design systems, conducting deep discovery, and partnering closely with
-          cross-functional teams.
+          A proven track record partnering with Product Managers, Engineers, and Researchers across Figma, TikTok, and scaling B2C SaaS platforms to deliver accessible, data-driven digital experiences[cite: 1].
         </p>
-      </div>
-      <hr className="rule" style={{ margin: "0 40px" }} />
 
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "64px 40px" }}>
-        {EXPERIENCE.map((e, i) => (
-          <div
-            className="reveal exp-row"
-            key={e.co}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "180px 1fr",
-              gap: 36,
-              paddingBottom: 44,
-              marginBottom: 44,
-              borderBottom:
-                i < EXPERIENCE.length - 1 ? "1px solid var(--line)" : "none",
-            }}
-          >
-            <div>
-              <div
-                className="font-mono"
-                style={{ fontSize: 13, color: "var(--accent)" }}
-              >
-                {e.period}
+        {/* Quick KPI Strip */}
+        <div
+          className="anim-up d4"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+            gap: 20,
+            marginTop: 48,
+            padding: "24px 28px",
+            background: "var(--surface)",
+            border: "1px solid var(--line)",
+            borderRadius: 18,
+          }}
+        >
+          {EXP_METRICS.map((m) => (
+            <div key={m.label}>
+              <div className="font-display grad-text" style={{ fontSize: 26, fontWeight: 700 }}>
+                {m.num}
               </div>
               <div
                 className="font-mono"
                 style={{
-                  fontSize: 11,
-                  color: "var(--ink-muted)",
-                  marginTop: 8,
-                  letterSpacing: "0.04em",
-                }}
-              >
-                {e.industry}
-              </div>
-            </div>
-            <div>
-              <h3
-                className="font-display"
-                style={{
-                  fontSize: 23,
-                  fontWeight: 600,
-                  letterSpacing: "-0.015em",
-                }}
-              >
-                {e.co}
-              </h3>
-              <div
-                style={{
-                  fontSize: 14,
+                  fontSize: 10.5,
                   color: "var(--ink-muted)",
                   marginTop: 4,
-                  marginBottom: 14,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
                 }}
               >
-                {e.role}
-              </div>
-              <p
-                style={{
-                  fontSize: 15,
-                  fontWeight: 300,
-                  color: "var(--ink-soft)",
-                  lineHeight: 1.75,
-                  marginBottom: 16,
-                }}
-              >
-                {e.desc}
-              </p>
-              <div style={{ display: "flex", gap: 7, flexWrap: "wrap" }}>
-                {e.tags.map((t) => (
-                  <span key={t} className="tag">
-                    {t}
-                  </span>
-                ))}
+                {m.label}
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
+      <hr className="rule" style={{ margin: "0 40px" }} />
+
+      {/* Timeline Stream */}
+      <div style={{ maxWidth: 940, margin: "0 auto", padding: "72px 40px" }}>
+        <div style={{ position: "relative" }}>
+          {/* Vertical Timeline Track Line */}
+          <div
+            style={{
+              position: "absolute",
+              left: 20,
+              top: 14,
+              bottom: 14,
+              width: 2,
+              background: "linear-gradient(to bottom, var(--line-strong), var(--line), transparent)",
+            }}
+          />
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 52 }}>
+            {EXPERIENCE.map((e, i) => (
+              <div
+                key={e.co}
+                className="reveal"
+                style={{
+                  position: "relative",
+                  paddingLeft: 64,
+                }}
+              >
+                {/* Timeline Pulse Node */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: 11,
+                    top: 18,
+                    width: 20,
+                    height: 20,
+                    borderRadius: "50%",
+                    background: i === 0 ? "var(--grad)" : "var(--surface)",
+                    border: i === 0 ? "3px solid var(--bg)" : "2px solid var(--line-strong)",
+                    boxShadow: i === 0 ? "0 0 16px -2px rgba(238,9,121,0.6)" : "none",
+                    zIndex: 2,
+                  }}
+                />
+
+                {/* Experience Card */}
+                <div
+                  style={{
+                    background: "var(--surface)",
+                    border: "1px solid var(--line)",
+                    borderRadius: 22,
+                    padding: "32px 30px",
+                    boxShadow: "0 10px 30px -15px rgba(0,0,0,0.12)",
+                    transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                    e.currentTarget.style.borderColor = "var(--line-strong)";
+                    e.currentTarget.style.boxShadow = "0 20px 40px -18px rgba(0,0,0,0.25)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.borderColor = "var(--line)";
+                    e.currentTarget.style.boxShadow = "0 10px 30px -15px rgba(0,0,0,0.12)";
+                  }}
+                >
+                  {/* Top Bar: Company, Period & Role */}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      flexWrap: "wrap",
+                      gap: 12,
+                      paddingBottom: 18,
+                      borderBottom: "1px solid var(--line)",
+                    }}
+                  >
+                    <div>
+                      <div
+                        className="font-mono"
+                        style={{
+                          fontSize: 11,
+                          letterSpacing: "0.1em",
+                          textTransform: "uppercase",
+                          color: "var(--ink-muted)",
+                          marginBottom: 4,
+                        }}
+                      >
+                        {e.industry}
+                      </div>
+                      <h3
+                        className="font-display"
+                        style={{
+                          fontSize: "clamp(22px,3vw,28px)",
+                          fontWeight: 600,
+                          letterSpacing: "-0.02em",
+                        }}
+                      >
+                        {e.co}
+                      </h3>
+                    </div>
+
+                    <div style={{ textAlign: "right" }}>
+                      <span
+                        className="font-mono grad-text"
+                        style={{
+                          fontSize: 12.5,
+                          fontWeight: 700,
+                          letterSpacing: "0.04em",
+                          display: "inline-block",
+                        }}
+                      >
+                        {e.period}
+                      </span>
+                      <div
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 500,
+                          color: "var(--ink-soft)",
+                          marginTop: 3,
+                        }}
+                      >
+                        {e.role}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Role Narrative */}
+                  <p
+                    style={{
+                      fontSize: 15.5,
+                      fontWeight: 300,
+                      color: "var(--ink-soft)",
+                      lineHeight: 1.8,
+                      marginTop: 20,
+                      marginBottom: 24,
+                    }}
+                  >
+                    {e.desc}
+                  </p>
+
+                  {/* Skill & Achievement Badges */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {e.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="tag"
+                        style={{
+                          fontSize: 11,
+                          padding: "5px 12px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 6,
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: 5,
+                            height: 5,
+                            borderRadius: "50%",
+                            background: "var(--grad)",
+                          }}
+                        />
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom CTA Banner */}
       <div
         style={{
           background: "var(--surface)",
@@ -2955,7 +3094,7 @@ function ExperiencePage({ go }) {
           textAlign: "center",
         }}
       >
-        <div className="wrap" style={{ padding: "76px 40px" }}>
+        <div className="wrap" style={{ padding: "80px 40px" }}>
           <div className="reveal">
             <span
               className="eyebrow"
@@ -2972,7 +3111,7 @@ function ExperiencePage({ go }) {
                 margin: "16px 0 28px",
               }}
             >
-              Explore the detailed design work.
+              See how these roles translate to shipped work.
             </h2>
             <button className="btn btn-fill" onClick={() => go("home")}>
               View Selected Work →
