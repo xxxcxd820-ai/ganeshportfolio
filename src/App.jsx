@@ -2579,52 +2579,152 @@ function AboutPage({ go }) {
       </div>
 
       {/* SKILLS */}
+     {/* ─────────────────────────────────────────────
+          UPGRADED SKILLS & TOOLKIT SECTION
+      ───────────────────────────────────────────── */}
       <div
         style={{
           background: "var(--surface)",
           borderTop: "1px solid var(--line)",
           borderBottom: "1px solid var(--line)",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div className="wrap" style={{ padding: "76px 40px" }}>
-          <SectionHead kicker="Expertise" title="Skills & Toolkit" />
+        <div className="wrap" style={{ padding: "88px 40px" }}>
+          <SectionHead
+            kicker="Expertise"
+            title="Skills & Toolkit"
+            em="architected for scale."
+          />
+
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(230px,1fr))",
-              gap: 40,
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 24,
+              marginTop: 20,
             }}
           >
-            {SKILLS.map(({ cat, items }) => (
-              <div className="reveal" key={cat}>
-                <div
-                  className="font-mono"
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "var(--accent)",
-                    marginBottom: 14,
-                    paddingBottom: 12,
-                    borderBottom: "1px solid var(--line)",
-                  }}
-                >
-                  {cat}
-                </div>
-                {items.map((it) => (
+            {SKILLS.map(({ cat, items }, idx) => (
+              <div
+                className="reveal"
+                key={cat}
+                style={{
+                  background: "var(--bg)",
+                  border: "1px solid var(--line)",
+                  borderRadius: 20,
+                  padding: "28px 24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: "0 10px 30px -15px rgba(0,0,0,0.12)",
+                  transition: "transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.borderColor = "var(--line-strong)";
+                  e.currentTarget.style.boxShadow = "0 20px 40px -15px rgba(238,9,121,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor = "var(--line)";
+                  e.currentTarget.style.boxShadow = "0 10px 30px -15px rgba(0,0,0,0.12)";
+                }}
+              >
+                <div>
+                  {/* Category Header with Index Number */}
                   <div
-                    key={it}
                     style={{
-                      fontSize: 14.5,
-                      fontWeight: 300,
-                      color: "var(--ink-soft)",
-                      padding: "8px 0",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      marginBottom: 20,
+                      paddingBottom: 14,
                       borderBottom: "1px solid var(--line)",
                     }}
                   >
-                    {it}
+                    <span
+                      className="font-display"
+                      style={{
+                        fontSize: 17,
+                        fontWeight: 600,
+                        color: "var(--ink)",
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {cat}
+                    </span>
+                    <span
+                      className="font-mono grad-text"
+                      style={{
+                        fontSize: 12,
+                        fontWeight: 700,
+                        letterSpacing: "0.08em",
+                      }}
+                    >
+                      0{idx + 1}
+                    </span>
                   </div>
-                ))}
+
+                  {/* Skills Tag Pills */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {items.map((it) => (
+                      <span
+                        key={it}
+                        style={{
+                          fontSize: 13,
+                          fontWeight: 400,
+                          color: "var(--ink-soft)",
+                          background: "var(--surface)",
+                          border: "1px solid var(--line)",
+                          borderRadius: 8,
+                          padding: "6px 12px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 6,
+                          transition: "color 0.2s, border-color 0.2s, transform 0.2s",
+                          cursor: "default",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = "var(--ink)";
+                          e.currentTarget.style.borderColor = "var(--ink-soft)";
+                          e.currentTarget.style.transform = "scale(1.03)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = "var(--ink-soft)";
+                          e.currentTarget.style.borderColor = "var(--line)";
+                          e.currentTarget.style.transform = "scale(1)";
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: 4,
+                            height: 4,
+                            borderRadius: "50%",
+                            background: "var(--grad)",
+                            display: "inline-block",
+                          }}
+                        />
+                        {it}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Micro Footer Counter */}
+                <div
+                  className="font-mono"
+                  style={{
+                    fontSize: 10.5,
+                    color: "var(--ink-muted)",
+                    marginTop: 24,
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {items.length} competencies
+                </div>
               </div>
             ))}
           </div>
