@@ -326,9 +326,27 @@ const GlobalStyles = () => (
     }
   `}</style>
 );
+/* ─────────────────────────────────────────────
+   PROFILE & STATS DATA
+───────────────────────────────────────────── */
+const PROFILE = {
+  name: "Ganesh",
+  title: "Senior Product Designer | UX/UI Designer",
+  tagline: "Translating complex product requirements into scalable, intuitive digital experiences.",
+  email: "ganesh.design@example.com",
+  linkedin: "linkedin.com/in/ganesh-ux",
+  resume: "/Ganesh_Resume.pdf",
+  location: "USA · Remote",
+};
 
+const STATS = [
+  { n: "5+", l: "Years of Experience" },
+  { n: "58%", l: "Active User Growth (SaaS)" },
+  { n: "3+", l: "Global Tech Platforms" },
+];
 /* ─────────────────────────────────────────────
    DATA — Ganesh's Resume & GitHub Case Studies
+
 ───────────────────────────────────────────── */
 const CASE_STUDIES = [
   /* ─────────────────────────────────────────────────────────────
