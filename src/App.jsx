@@ -1917,21 +1917,21 @@ function HomePage({ go, openCase }) {
 }
 const PROJECTS = [
   {
-    id: "fintech-crypto-dashboard",
-    title: "Apex Finance — Web3 Asset Dashboard",
-    category: "Fintech & Web3 Platform",
-    year: "2025",
-    desc: "A real-time cryptocurrency and fiat wealth management interface featuring live portfolio tracking, biometric transaction signing, and dynamic light/dark charts.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Figma", "Chart.js"],
-    liveUrl: "https://example.com/demo-finance",
-    githubUrl: "https://github.com/example/finance-dashboard",
-    stats: [
-      { label: "Active Traders", val: "120K+" },
-      { label: "Transaction Speed", val: "<1.2s" },
-      { label: "System Uptime", val: "99.98%" },
-    ],
-  },
+  id: "veggie-boost-app",
+  title: "Veggie Boost — Farm-to-Table Nutrition & Recipe Platform",
+  category: "HealthTech & E-Commerce",
+  year: "2025",
+  desc: "An organic vegetable discovery, personalized nutrition, and clean food ordering experience designed with modular component systems and micro-interactions in Figma.",
+  image: "/assets/veggieboost.png", // Nee image asset path ikkada replace cheskovachu
+  tags: ["Figma", "UI/UX Design", "Design Systems", "Mobile App", "Prototyping"],
+  liveUrl: "https://www.figma.com/design/jGCCcfdvsxo3tYTdlApR1i/Veggie-boost?node-id=0-1&p=f",
+  githubUrl: "https://www.figma.com/design/jGCCcfdvsxo3tYTdlApR1i/Veggie-boost?node-id=0-1&p=f",
+  stats: [
+    { label: "Checkout Conversion", val: "+42%" },
+    { label: "Design Token Reuse", val: "95%" },
+    { label: "Task Success Rate", val: "94%" },
+  ],
+},
   {
     id: "ai-collaborative-workspace",
     title: "NovaDocs — Real-time AI Note Canvas",
