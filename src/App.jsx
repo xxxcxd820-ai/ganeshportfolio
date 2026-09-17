@@ -3600,7 +3600,7 @@ function ProjectsPage({ go }) {
 
               {/* Action Links */}
               <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 36 }}>
-                <a
+                {/* <a
                   href={proj.liveUrl}
                   target="_blank"
                   rel="noreferrer"
@@ -3608,8 +3608,8 @@ function ProjectsPage({ go }) {
                   style={{ padding: "10px 18px" }}
                 >
                   Live Demo <span>↗</span>
-                </a>
-                <a
+                </a> */}
+                {/* <a
                   href={proj.githubUrl}
                   target="_blank"
                   rel="noreferrer"
@@ -3617,7 +3617,7 @@ function ProjectsPage({ go }) {
                   style={{ padding: "10px 18px" }}
                 >
                   Source Code <span>⌥</span>
-                </a>
+                </a> */}
               </div>
             </div>
           </article>
