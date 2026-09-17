@@ -330,21 +330,10 @@ const GlobalStyles = () => (
 /* ─────────────────────────────────────────────
    DATA — Ganesh's Resume & GitHub Case Studies
 ───────────────────────────────────────────── */
-const PROFILE = {
-  name: "Ganesh",
-  title: "Senior Product Designer | UX/UI Designer",
-  tagline: "Translating complex product requirements into scalable, intuitive digital experiences.",
-  email: "ganesh.design@example.com",
-  linkedin: "linkedin.com/in/ganesh-ux",
-  resume: "/Ganesh_Resume.pdf",
-};
-
-const STATS = [
-  { n: "5+", l: "Years of Experience" },
-  { n: "58%", l: "Active User Growth (SaaS)" },
-  { n: "3+", l: "Global Tech Platforms" },
-];
 const CASE_STUDIES = [
+  /* ─────────────────────────────────────────────────────────────
+     CASE STUDY 01: FINTECH & WEALTHTECH
+  ───────────────────────────────────────────────────────────── */
   {
     id: "ubank-digital-banking",
     index: "01",
@@ -358,8 +347,8 @@ const CASE_STUDIES = [
     detailTitle: "UBank Digital Banking & Financial Management App",
     detailSubtitle: "Transforming complex financial workflows into accessible, user-friendly mobile banking journeys.",
     heroImage: "/assets/UBank1.png",
-    
-    // 1. Dual-Sided Framing / Core Value Prop
+
+    // Dual-Sided Framing / Core Value Prop
     dualProps: {
       left: {
         title: "Consumer / Retail Saver",
@@ -395,7 +384,7 @@ const CASE_STUDIES = [
       "Design QA & Developer Handoff"
     ],
 
-    // 2. User Personas
+    // User Personas
     personas: [
       {
         name: "Vikram R.",
@@ -417,7 +406,7 @@ const CASE_STUDIES = [
       }
     ],
 
-    // 3. Usability Testing & Nielsen Severity Matrix
+    // Usability Testing & Nielsen Severity Matrix
     usabilityTests: [
       {
         task: "Task 1: Execute Instant P2P Transfer",
@@ -445,7 +434,7 @@ const CASE_STUDIES = [
     screens: [
       { title: "Smart Dashboard & Balance Insights", src: "/assets/UBank2.png" },
       { title: "One-Tap P2P Instant Transfer Flow", src: "/assets/UBank3.png" },
-      { title: "Card Security & Financial Controls", src: "/assets/UBank4.png" },
+      { title: "Card Security & Financial Controls", src: "/assets/UBank4.png" }
     ],
 
     challenge: "Legacy banking interfaces overwhelmed users with technical financial jargon, dense account views, and multi-step transfer flows that caused high transaction abandonment.",
@@ -495,7 +484,310 @@ const CASE_STUDIES = [
       }
     ]
   },
-  // Other case studies...
+
+  /* ─────────────────────────────────────────────────────────────
+     CASE STUDY 02: DUAL-SIDED MARKETPLACE & MOBILITY (FLIT LOGISTICS)
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: "flit-urban-mobility",
+    index: "02",
+    title: "Flit — Zero-Commission Urban Mobility & Logistics",
+    subtitle: "Architecting a two-sided on-demand ecosystem pairing passenger ride-hailing with hyper-local parcel logistics.",
+    preview: "Empirical field research, zero-commission economics, and high-urgency mobile task flows for riders and drivers.",
+    company: "Flit Mobility",
+    year: "2023 — 2024",
+    role: "Lead Product Designer",
+    tags: ["Marketplace UX", "Logistics", "Usability Testing", "Nielsen Heuristics", "Affinity Mapping"],
+    detailTitle: "Flit: Dual-Service Urban Transportation Platform",
+    detailSubtitle: "Solving driver turnover and rider surge anxiety through transparent booking flows and combined delivery logistics.",
+    heroImage: "/assets/Flit1.png",
+
+    // Dual-Sided Framing
+    dualProps: {
+      left: {
+        title: "Riders & Parcel Senders",
+        badge: "Demand Side",
+        points: [
+          "Guaranteed upfront fare quotes with zero surge pricing multipliers.",
+          "Single-app switching between ride hailing and same-day city courier requests.",
+          "Live telemetry map showing vehicle ETA, route heatmaps, and courier verification pin."
+        ]
+      },
+      right: {
+        title: "Fleet Drivers & Couriers",
+        badge: "Supply Side (Zero Commission)",
+        points: [
+          "100% direct fare retention model with optional daily subscription fee.",
+          "Combined ride & delivery requests to maximize idle time and hourly earnings.",
+          "One-touch instant payout settlements directly into verified UPI bank accounts."
+        ]
+      }
+    },
+
+    overview: [
+      "Led end-to-end product design from generative field interviews to high-fidelity design specifications for iOS, Android, and Driver terminals.",
+      "Conducted in-vehicle ride-along field studies to analyze driver distraction triggers and cognitive load during dispatch alerts.",
+      "Established an interactive Figma component kit optimized for high outdoor sunlight contrast (WCAG AAA) and one-handed thumb interaction zones.",
+      "Synthesized usability testing observations using Affinity Mapping and evaluated design iterations against Nielsen's Severity Rating scale."
+    ],
+    responsibilities: [
+      "Field UX Research & In-Cab Shadowing",
+      "Two-Sided Service Blueprint Architecture",
+      "Affinity Diagramming & Heuristic Analysis",
+      "Ergonomic Driver Interface & Interaction Design",
+      "A/B Preference Testing & Micro-Interactions"
+    ],
+
+    personas: [
+      {
+        name: "Arjun K.",
+        role: "Full-Time Ride-Hail Driver",
+        goal: "Wants predictable daily earnings without losing 25–30% in platform commissions.",
+        frustration: "Complex dispatch prompts while navigating traffic, leading to missed trip opportunities and low ratings."
+      },
+      {
+        name: "Sneha M.",
+        role: "Independent Boutique Owner",
+        goal: "Requires immediate on-demand courier dispatch to deliver urgent local retail orders to customers.",
+        frustration: "Existing courier apps are too expensive for parcels under 5 km and provide inaccurate pickup ETAs."
+      },
+      {
+        name: "David T.",
+        role: "Daily Transit Commuter",
+        goal: "Needs transparent pricing and dependable driver commitments during peak morning hours.",
+        frustration: "Frequent driver trip cancellations and unpredictable surge multipliers."
+      }
+    ],
+
+    usabilityTests: [
+      {
+        task: "Task 1: Dispatch Urgent Parcel Pickup",
+        severity: "Severity 3 (Major)",
+        severityColor: "#ff4d4f",
+        issue: "60% of users failed to distinguish between ride-hailing and parcel mode during location selection.",
+        solution: "Introduced a prominent two-tab segmented toggle at the top of the map with distinct icon cues and vehicle illustrations."
+      },
+      {
+        task: "Task 2: Driver In-Transit Fare Verification",
+        severity: "Severity 2 (Minor)",
+        severityColor: "#faad14",
+        issue: "Drivers struggled to read customer drop-off instructions on dashboard mount while navigating.",
+        solution: "Redesigned trip banners to dynamic large typography cards with text-to-speech voice readout prompts."
+      },
+      {
+        task: "Task 3: Post-Trip Courier Proof of Delivery",
+        severity: "Severity 1 (Cosmetic)",
+        severityColor: "#52c41a",
+        issue: "Photo capture confirmation lacked tactile visual verification of successful camera upload.",
+        solution: "Implemented instant green edge-halo feedback and haptic vibration upon image geotag validation."
+      }
+    ],
+
+    screens: [
+      { title: "Dual-Mode Booking & Live Geolocation Map", src: "/assets/Flit2.png" },
+      { title: "Driver Ergonomic Dispatch & Earnings Console", src: "/assets/Flit3.png" },
+      { title: "Transparent Pricing & Live Courier Telemetry", src: "/assets/Flit4.png" }
+    ],
+
+    challenge: "Traditional mobility applications rely on steep 25–30% platform commissions that alienate drivers, causing high cancellation rates, delayed pickups, and user churn.",
+    constraints: [
+      "Low battery consumption during continuous background GPS tracking",
+      "High visibility requirements under harsh outdoor sunlight",
+      "Strict safety guidelines requiring minimal driver distraction (<2 seconds tap interaction)",
+      "Low-bandwidth offline mode for transit dead-zones"
+    ],
+    solution: [
+      {
+        group: "Driver Command Console",
+        note: "Ergonomic in-transit UX",
+        items: [
+          "OLED Dark Mode interface reducing cabin night-glare",
+          "Giant single-tap accept touch targets (>64px)",
+          "Real-time transparent earnings gauge without hidden deductions",
+          "Automated parcel drop-off verification camera overlay"
+        ]
+      },
+      {
+        group: "Rider Seamless Checkout & Tracking",
+        note: "Frictionless dual service",
+        items: [
+          "One-tap pickup estimation with fixed upfront quotes",
+          "Integrated parcel dimension selector with instant weight estimation",
+          "Emergency safety SOS with real-time route sharing",
+          "Zero-surge guarantee pricing breakdown"
+        ]
+      }
+    ],
+    impact: [
+      {
+        group: "Operational Metrics",
+        items: [
+          "Driver cancellation rate reduced from 28% to 6.4%",
+          "Average pickup dispatch time dropped by 3.2 minutes across pilot zones",
+          "4.9/5 overall app rating across 45,000+ completed transit trips"
+        ]
+      },
+      {
+        group: "Business Growth",
+        items: [
+          "52% increase in driver sign-ups within 90 days of the zero-commission pilot",
+          "31% of daily active riders cross-utilized the on-demand parcel courier feature"
+        ]
+      }
+    ]
+  },
+
+  /* ─────────────────────────────────────────────────────────────
+     CASE STUDY 03: ENTERPRISE B2B SAAS & DESIGN SYSTEM
+  ───────────────────────────────────────────────────────────── */
+  {
+    id: "pulse-design-system",
+    index: "03",
+    title: "Pulse — Multi-Brand Enterprise UI & Token Engine",
+    subtitle: "Standardizing component governance and design-to-code velocity across 4 web platforms and 2 native applications.",
+    preview: "Multi-tier semantic tokens, automated WCAG accessibility QA, and zero-loss Figma Dev Mode developer handoff.",
+    company: "Pulse Core Systems",
+    year: "2022 — 2023",
+    role: "Senior UI/UX Specialist",
+    tags: ["Design Systems", "Design Tokens", "Dev Mode", "Storybook", "Enterprise SaaS"],
+    detailTitle: "Pulse Enterprise Design System & Component Governance",
+    detailSubtitle: "Bridging the visual-to-code gap across product squads through semantic variables, token engines, and unified UI specifications.",
+    heroImage: "/assets/Pulse1.png",
+
+    // Dual-Sided Framing
+    dualProps: {
+      left: {
+        title: "Product Designers & Creators",
+        badge: "Design Acceleration",
+        points: [
+          "250+ responsive component variants with standardized autolayout 5.0 properties.",
+          "Global semantic tokens for instant light, dark, and high-contrast brand theming.",
+          "Single source of truth eliminating duplicated prototype exploration."
+        ]
+      },
+      right: {
+        title: "Frontend Engineering Teams",
+        badge: "Developer Velocity",
+        points: [
+          "Direct parity between Figma variables and production CSS/Tailwind tokens.",
+          "Automated Design QA checklists integrated directly into Storybook CI/CD.",
+          "Figma Dev Mode annotations eliminating speculative spacing measurements."
+        ]
+      }
+    },
+
+    overview: [
+      "Led the architecture and technical rollout of the Pulse Design System, unifying 6 disparate enterprise cloud products.",
+      "Audited 1,400+ legacy UI screens to catalog inconsistencies, duplicate CSS classes, and WCAG color contrast violations.",
+      "Built a semantic 3-tier token architecture (Global, Semantic, Component) using Figma Variables and Style Dictionary.",
+      "Established a monthly Design System Governance Council, conducting component reviews and cross-functional handoff workshops with engineering leads."
+    ],
+    responsibilities: [
+      "Multi-Tier Design Token Architecture",
+      "Component Variant Library & Micro-Interactions",
+      "Automated WCAG Accessibility & Contrast Audits",
+      "Storybook React Component Alignment",
+      "Design-to-Code Governance & Documentation"
+    ],
+
+    personas: [
+      {
+        name: "Marcus L.",
+        role: "Staff Frontend Engineer",
+        goal: "Needs clean, production-ready token names matching Tailwind CSS without guessing pixel dimensions.",
+        frustration: "Designers delivering static Figma files with inconsistent padding, missing error states, and unlinked hex codes."
+      },
+      {
+        name: "Elena Z.",
+        role: "Product Designer (Feature Squad)",
+        goal: "Wants to rapidly mock up complex enterprise data tables and wizards without rebuilding recurring components.",
+        frustration: "Conflicting component variants across different team files causing rework during design critique sessions."
+      },
+      {
+        name: "Pooja B.",
+        role: "VP of Product Management",
+        goal: "Demands visual brand consistency and predictable sprint estimation across multi-region product rollouts.",
+        frustration: "Product launches delayed by weeks due to repetitive styling fixes, regressions, and accessibility bugs."
+      }
+    ],
+
+    usabilityTests: [
+      {
+        task: "Task 1: Engineer Token Inspection in Dev Mode",
+        severity: "Severity 3 (Major)",
+        severityColor: "#ff4d4f",
+        issue: "Developers could not determine whether hardcoded spacing values were intentional overrides or tokens.",
+        solution: "Enforced strict component token aliasing (e.g., `space.inset.sm`) and enabled automated Dev Mode token tooltips."
+      },
+      {
+        task: "Task 2: High-Density Table Filtering & Sorting",
+        severity: "Severity 2 (Minor)",
+        severityColor: "#faad14",
+        issue: "Users in complex data grids struggled to notice multi-column active sorting indicators.",
+        solution: "Engineered high-contrast sort icons with visual numeric priority pills (1, 2, 3) for multi-column sorting."
+      },
+      {
+        task: "Task 3: Dark Mode Accessibility Contrast Switch",
+        severity: "Severity 1 (Cosmetic)",
+        severityColor: "#52c41a",
+        issue: "Secondary button border lacked sufficient 3:1 contrast ratio against card backgrounds in dark mode.",
+        solution: "Updated semantic border variable tokens to automatically shift contrast values upon theme mode swap."
+      }
+    ],
+
+    screens: [
+      { title: "Atomic Tokens & Theme Engine Architecture", src: "/assets/Pulse2.png" },
+      { title: "Complex Data Table & Enterprise Filter Suite", src: "/assets/Pulse3.png" },
+      { title: "Storybook Alignment & Figma Dev Mode Specifications", src: "/assets/Pulse4.png" }
+    ],
+
+    challenge: "Rapid expansion across multiple international teams led to 6 fragmented web products with 42 different button styles, unmaintainable technical debt, and continuous accessibility failures.",
+    constraints: [
+      "Zero disruption to active agile sprints during legacy migration",
+      "Strict WCAG 2.1 Level AA compliance across all components",
+      "Seamless support for responsive web, iPad OS viewports, and electron desktop wrappers",
+      "Backwards compatibility with React and legacy Vue.js codebases"
+    ],
+    solution: [
+      {
+        group: "Tokenization Engine",
+        note: "Global semantic hierarchy",
+        items: [
+          "3-Tier Token structure: Reference (Primitive) → System (Semantic) → Component",
+          "Automated export via Style Dictionary to JSON, SCSS, and Tailwind config",
+          "Color blindness simulator mode verified for all palette pairings",
+          "Fluid typography and modular spacing scales based on 8pt grid"
+        ]
+      },
+      {
+        group: "Component Library & Governance",
+        note: "Figma Dev Mode parity",
+        items: [
+          "250+ accessible components with built-in interactive states",
+          "Live interactive documentation with Storybook and Zeroheight integration",
+          "Component contribution RFC process for squad feature designers",
+          "Automated linting for unlinked styles and contrast regressions"
+        ]
+      }
+    ],
+    impact: [
+      {
+        group: "Engineering Velocity",
+        items: [
+          "Cut design-to-code sprint delivery time by 48%",
+          "Reduced UI-related GitHub issues and styling bug tickets by 72%",
+          "Eliminated 600+ duplicate CSS class declarations from core frontend repos"
+        ]
+      },
+      {
+        group: "Product Quality",
+        items: [
+          "Achieved 100% WCAG 2.1 AA compliance certification across enterprise product suites",
+          "Standardized brand parity across 6 enterprise applications under unified governance"
+        ]
+      }
+    ]
+  }
 ];
 
 const EXPERIENCE = [
