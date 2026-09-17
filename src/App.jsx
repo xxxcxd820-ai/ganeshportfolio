@@ -3599,7 +3599,7 @@ function ProjectsPage({ go }) {
               </div>
 
               {/* Action Links */}
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 36 }}>
+              {/* <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 36 }}> */}
                 {/* <a
                   href={proj.liveUrl}
                   target="_blank"
@@ -3618,7 +3618,7 @@ function ProjectsPage({ go }) {
                 >
                   Source Code <span>⌥</span>
                 </a> */}
-              </div>
+              {/* </div> */}
             </div>
           </article>
         ))}
