@@ -335,8 +335,7 @@ const PROFILE = {
   tagline: "Translating complex product requirements into scalable, intuitive digital experiences.",
   email: "ganesh.design@example.com",
   linkedin: "linkedin.com/in/ganesh-ux",
-  resume: "/Ganesh_Resume.pdf",
-  location: "USA · Remote",
+  resume: "/Ganesh_Resume.pdf"
 };
 
 const STATS = [
